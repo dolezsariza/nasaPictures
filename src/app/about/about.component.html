@@ -1,0 +1,44 @@
+<p>
+  Mars Rover photos
+<div>
+  <p>rovers:</p>
+  <p>Curiosity, Opportunity, Spirit</p>
+</div>
+
+<div>
+  <h4>cameras: </h4>
+  <ul>
+    <li>COS - FHAZ front hazard avoidance camera</li>
+    <li>COS - RHAZ rear</li>
+    <li>C - MAST mast camera</li>
+    <li>C - CHEMCAM chemistry and camera complex</li>
+    <li>C - MAHLI Mars Hand Lens Imager</li>
+    <li>C - MARDI Mars descent imager</li>
+    <li>COS - NAVCAM navigation camera</li>
+    <li>OS - PANCAM panoramic camera</li>
+    <li>OS - MINITES miniature thermal emission spectrometer (Mini-TES)</li>
+  </ul>
+</div>
+<div>
+  <h4>Egyéb: </h4>
+  <ul>
+    <li>sol: hányadik 'nap' a marson - int</li>
+    <li>camera: string, alapból all</li>
+    <li>page: int</li>
+    <li>api_key: DEMO_KEY, de kéne rendes....</li>
+    <li>earth_date: YYYY-MM-DD külön be kell állítani az egészet (2 lista meg egy 4 jegyű év)</li>
+    <li>name: rover kiválasztható</li>
+    <li>landing_date</li>
+    <li>launching_date</li>
+    <li>status</li>
+    <li>max_sol - the most recent</li>
+    <li>max_date -||-</li>
+    <li>total_photos: az összes egy rovertől (int)</li>
+  </ul>
+</div>
+<div>
+  <p>példa link: </p>
+  <p>https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY 
+    vagy https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=DEMO_KEY</p>
+  <p>szóval a rovers után lesz a kiválasztott név, utána meg adogatjuk hozzá a napot meg a kamerát. thats it.</p>
+</div>

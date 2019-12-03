@@ -1,0 +1,18 @@
+<p>
+  nézd meg, hogy kell queryzni az apit, meg hogy lehet linkbe beleilleszteni mindent amit kiválasztasz. tuti benne van abban amikor a webshopot csináltuk és szűrni lehetett
+  yay.
+</p>
+
+<ul>
+    <h3>
+        {{photos[0]['rover']['name']}}
+      </h3>
+      <h5>
+        {{photos[0]['earth_date']}}
+      </h5>
+  <li *ngFor="let photo of photos">
+    
+    <img src='{{photo["img_src"]}}'>
+    
+  </li>
+</ul>
