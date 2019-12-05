@@ -1,18 +1,116 @@
-<p>
-  nézd meg, hogy kell queryzni az apit, meg hogy lehet linkbe beleilleszteni mindent amit kiválasztasz. tuti benne van abban amikor a webshopot csináltuk és szűrni lehetett
-  yay.
-</p>
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous"
+/>
 
-<ul>
-    <h3>
-        {{photos[0]['rover']['name']}}
-      </h3>
-      <h5>
-        {{photos[0]['earth_date']}}
-      </h5>
-  <li *ngFor="let photo of photos">
-    
-    <img src='{{photo["img_src"]}}'>
-    
-  </li>
-</ul>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  crossorigin="anonymous"
+></script>
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <div>
+          <h3>Information!</h3>
+          <ul>
+            <li>
+              Curiosity:
+              <ul>
+                <li>landing date: 2010. 08. 06.</li>
+                <li>max date: 2019. 09. 28.</li>
+              </ul>
+            </li>
+            <li>
+              Opportunity:
+              <ul>
+                <li>landing date: 2004. 01. 25.</li>
+                <li>max date: 2018.06.11.</li>
+              </ul>
+            </li>
+            <li>
+              Spirit:
+              <ul>
+                <li>landing date: 2004. 01. 04.</li>
+                <li>max date: 2010. 03. 21.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </td>
+      <td>
+        <h2>Choose the rover, camera and date!</h2>
+        <form [formGroup]="picForm" (ngSubmit)="onSubmit()" novalidate>
+          <div formGroupName="nasaPic" novalidate>
+            <p>Rover:</p>
+            <select formControlName="roverName">
+              <option *ngFor="let name of roverName" [value]="name">
+                {{ name }}
+              </option>
+            </select>
+            <p>Year:</p>
+            <input
+              formControlName="year"
+              id="year"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              type="number"
+              placeholder="E.g. 2010"
+              maxlength="4"
+            />
+            <p>Month:</p>
+            <select id="Months" formControlName="month">
+              <option
+                *ngFor="let number of ' '.repeat(12).split(''); let x = index"
+                >{{ x + 1 }}</option
+              >
+            </select>
+            <p>Day:</p>
+            <select id="Days" formControlName="day">
+              <option
+                *ngFor="let number of ' '.repeat(31).split(''); let x = index"
+                >{{ x + 1 }}</option
+              >
+            </select>
+          </div>
+
+          <button type="submit" [disabled]="picForm.pristine">Save</button>
+          <button type="reset" (click)="revert()" [disabled]="picForm.pristine">
+            Revert
+          </button>
+        </form>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>
+  {{ photos[0]["rover"]["name"] }}
+</h3>
+<h4>
+  {{ photos[0]["earth_date"] }}
+</h4>
+
+<div class="row">
+  <div class="col-lg-6" *ngFor="let photo of photos">
+    <img
+      class="card-img-top"
+      [src]="photo['img_src']"
+      [id]="photo['id']"
+      alt="Card image"
+    />
+  </div>
+</div>
