@@ -21,7 +21,7 @@
   crossorigin="anonymous"
 ></script>
 
-<table>
+<table class="styled">
   <tbody>
     <tr>
       <td>
@@ -57,7 +57,7 @@
         <form [formGroup]="picForm" (ngSubmit)="onSubmit()" novalidate>
           <div formGroupName="nasaPic" novalidate>
             <p>Rover:</p>
-            <select formControlName="roverName">
+            <select formControlName="roverName" required>
               <option *ngFor="let name of roverName" [value]="name">
                 {{ name }}
               </option>
@@ -70,24 +70,27 @@
               type="number"
               placeholder="E.g. 2010"
               maxlength="4"
+              required
             />
             <p>Month:</p>
-            <select id="Months" formControlName="month">
+            <select id="Months" formControlName="month" required>
               <option
                 *ngFor="let number of ' '.repeat(12).split(''); let x = index"
+                [value]="x + 1"
                 >{{ x + 1 }}</option
               >
             </select>
             <p>Day:</p>
-            <select id="Days" formControlName="day">
+            <select id="Days" formControlName="day" required>
               <option
                 *ngFor="let number of ' '.repeat(31).split(''); let x = index"
+                [value]="x + 1"
                 >{{ x + 1 }}</option
               >
             </select>
           </div>
 
-          <button type="submit" [disabled]="picForm.pristine">Save</button>
+          <button type="submit" [disabled]="!picForm.valid">Save</button>
           <button type="reset" (click)="revert()" [disabled]="picForm.pristine">
             Revert
           </button>
@@ -97,12 +100,10 @@
   </tbody>
 </table>
 
-<h3>
-  {{ photos[0]["rover"]["name"] }}
+<h3 *ngIf="choosenRoverName">
+  {{ choosenRoverName }}
 </h3>
-<h4>
-  {{ photos[0]["earth_date"] }}
-</h4>
+<h4 *ngIf="earthDate">{{ earthDate }}</h4>
 
 <div class="row">
   <div class="col-lg-6" *ngFor="let photo of photos">
