@@ -42,10 +42,11 @@ export class HomeComponent implements OnInit {
     this.choosenRoverName = result.nasaPic.roverName;
     this.earthDate =
       result.nasaPic.year +
-      "-" +
+      ". " +
       result.nasaPic.month +
-      "-" +
-      result.nasaPic.day;
+      ". " +
+      result.nasaPic.day +
+      ". ";
   }
 
   revert() {

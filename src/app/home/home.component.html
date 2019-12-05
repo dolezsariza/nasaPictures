@@ -1,49 +1,26 @@
-<link
-  rel="stylesheet"
-  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-  crossorigin="anonymous"
-/>
-
-<script
-  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-  crossorigin="anonymous"
-></script>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-  crossorigin="anonymous"
-></script>
-<script
-  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-  crossorigin="anonymous"
-></script>
-
 <table class="styled">
   <tbody>
     <tr>
       <td>
-        <div>
-          <h3>Information!</h3>
+        <div class="information">
+          <h2>Information</h2>
           <ul>
             <li>
-              Curiosity:
+              <span class="rover-name">Curiosity:</span>
               <ul>
                 <li>landing date: 2010. 08. 06.</li>
                 <li>max date: 2019. 09. 28.</li>
               </ul>
             </li>
             <li>
-              Opportunity:
+              <span class="rover-name">Opportunity:</span>
               <ul>
                 <li>landing date: 2004. 01. 25.</li>
                 <li>max date: 2018.06.11.</li>
               </ul>
             </li>
             <li>
-              Spirit:
+              <span class="rover-name">Spirit: </span>
               <ul>
                 <li>landing date: 2004. 01. 04.</li>
                 <li>max date: 2010. 03. 21.</li>
@@ -53,17 +30,22 @@
         </div>
       </td>
       <td>
-        <h2>Choose the rover, camera and date!</h2>
+        <h3>Choose the rover and date!</h3>
         <form [formGroup]="picForm" (ngSubmit)="onSubmit()" novalidate>
           <div formGroupName="nasaPic" novalidate>
             <p>Rover:</p>
-            <select formControlName="roverName" required>
+            <select
+              formControlName="roverName"
+              class="custom-select my-1 mr-sm-2"
+              required
+            >
               <option *ngFor="let name of roverName" [value]="name">
                 {{ name }}
               </option>
             </select>
             <p>Year:</p>
             <input
+              class="form-control input-sm"
               formControlName="year"
               id="year"
               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
@@ -73,7 +55,13 @@
               required
             />
             <p>Month:</p>
-            <select id="Months" formControlName="month" required>
+
+            <select
+              id="Months"
+              class="custom-select my-1 mr-sm-1"
+              formControlName="month"
+              required
+            >
               <option
                 *ngFor="let number of ' '.repeat(12).split(''); let x = index"
                 [value]="x + 1"
@@ -81,7 +69,12 @@
               >
             </select>
             <p>Day:</p>
-            <select id="Days" formControlName="day" required>
+            <select
+              id="Days"
+              class="custom-select my-1 mr-md-1"
+              formControlName="day"
+              required
+            >
               <option
                 *ngFor="let number of ' '.repeat(31).split(''); let x = index"
                 [value]="x + 1"
@@ -90,8 +83,19 @@
             </select>
           </div>
 
-          <button type="submit" [disabled]="!picForm.valid">Save</button>
-          <button type="reset" (click)="revert()" [disabled]="picForm.pristine">
+          <button
+            type="submit"
+            class="btn btn-dark"
+            [disabled]="!picForm.valid"
+          >
+            Save
+          </button>
+          <button
+            type="reset"
+            class="btn btn-dark"
+            (click)="revert()"
+            [disabled]="picForm.pristine"
+          >
             Revert
           </button>
         </form>
@@ -100,18 +104,35 @@
   </tbody>
 </table>
 
-<h3 *ngIf="choosenRoverName">
+<h2 *ngIf="choosenRoverName">
   {{ choosenRoverName }}
-</h3>
+</h2>
 <h4 *ngIf="earthDate">{{ earthDate }}</h4>
+<div class="photo-container">
+  <div class="row">
+    <div class="col-lg-3 photorow" *ngFor="let photo of photos">
+      <img
+        class="card-img-top"
+        [src]="photo['img_src']"
+        style="cursor:zoom-in"
+        [id]="photo['id']"
+        alt="Card image"
+        (click)="nasaService.allowModal($event)"
+      />
+    </div>
 
-<div class="row">
-  <div class="col-lg-6" *ngFor="let photo of photos">
-    <img
-      class="card-img-top"
-      [src]="photo['img_src']"
-      [id]="photo['id']"
-      alt="Card image"
-    />
+    <div
+      *ngFor="let photo of photos"
+      id="{{ 'modal-' + photo['id'] }}"
+      class="w3-modal"
+      onclick="this.style.display='none'"
+    >
+      <span class="w3-button w3-hover-red w3-xlarge w3-display-topright"
+        >&times;</span
+      >
+      <div class="w3-modal-content w3-animate-zoom">
+        <img [src]="photo['img_src']" style="width:100%" />
+      </div>
+    </div>
   </div>
 </div>
