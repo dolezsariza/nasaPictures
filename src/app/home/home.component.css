@@ -1,0 +1,8 @@
+table.styled {
+  text-align: justify;
+  margin: 10px;
+}
+table.styled td,
+table.styled th {
+  padding: 60px;
+}
