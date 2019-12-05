@@ -1,9 +1,45 @@
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: black;
-    color: white;
-    text-align: center;
-  }
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+h4 {
+  color: #ccc;
+  font-size: 40px;
+}
+
+.footer-table {
+  position: relative;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+td {
+  margin: 20px;
+  padding: 30px;
+}
+
+tfoot td {
+  text-align: center;
+}
+
+.link {
+  color: #ccc;
+  font-size: 25px;
+}
+
+.link :hover {
+  color: #ccc;
+  text-shadow: 2px 2px 8px #fff;
+  text-decoration: none;
+}
+
+.lorem {
+  text-align: justify;
+  color: #ccc;
+  font-size: 25;
+}
