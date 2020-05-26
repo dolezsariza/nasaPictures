@@ -52,4 +52,8 @@ export class HomeComponent implements OnInit {
   revert() {
     this.picForm.reset({ nasaPic: new NasaPic() });
   }
+
+  allowModal(event: any){
+    this.nasaService.allowModal(event)
+  }
 }
