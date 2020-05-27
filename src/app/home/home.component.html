@@ -44,16 +44,28 @@
               </option>
             </select>
             <p>Year:</p>
-            <input
-              class="form-control input-sm"
+            <select
+              id="Years"
+              class="custom-select my-1 mr-sm-1"
               formControlName="year"
-              id="year"
-              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-              type="number"
-              placeholder="E.g. 2010"
-              maxlength="4"
               required
-            />
+            >
+              <option
+                *ngFor="let number of ' '.repeat(18).split(''); let x = index"
+                [value]="x + 1"
+              >{{ x + 2004 }}</option
+              >
+            </select>
+<!--            <input-->
+<!--              class="form-control input-sm"-->
+<!--              formControlName="year"-->
+<!--              id="year"-->
+<!--              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"-->
+<!--              type="number"-->
+<!--              placeholder="E.g. 2010"-->
+<!--              maxlength="4"-->
+<!--              required-->
+<!--            />-->
             <p>Month:</p>
 
             <select
