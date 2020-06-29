@@ -9,4 +9,4 @@ You can choose a Rover and a Date, and see the photos taken by that rover on tha
 
 ## Deploy
 
-You can now use it online too. The project is deployed to Netlify [here](https://admiring-poincare-7429cd.netlify.app).
+You can now use it online too. The project is deployed to Netlify [here](https://marsphotos.netlify.app).
